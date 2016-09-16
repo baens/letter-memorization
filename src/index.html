@@ -83,6 +83,7 @@
 
         function setLetter() {
             var letter = capitals.charAt(Math.floor(Math.random() * capitals.length));
+            if (letter === currentLetter) return setLetter();
             if(isLower){
                 letter = letter.toLowerCase();
             } else {
