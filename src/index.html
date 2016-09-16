@@ -81,14 +81,20 @@
             evt.preventDefault();
         };
 
-        function setLetter() {
+        function randomLetterGenerator (isLower) {
             var letter = capitals.charAt(Math.floor(Math.random() * capitals.length));
-            if (letter === currentLetter) return setLetter();
-            if(isLower){
+            if (isLower) {
                 letter = letter.toLowerCase();
-            } else {
-                letter = letter.toUpperCase();
             }
+            return letter;
+        }
+
+        function setLetter() {
+            var letter;
+            do {
+                letter = randomLetterGenerator(isLower);
+            } while (letter === currentLetter);
+            
             letterElement.innerHTML = letter;
         }
     </script>
