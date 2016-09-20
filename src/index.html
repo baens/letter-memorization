@@ -38,6 +38,8 @@
 
         var isLower = false;
         var currentLetter;
+        var pastLetters = [];
+        var NUMBER_OF_PAST = 20;
 
         function handleTouchStart(evt) {
             xDown = evt.touches[0].clientX;
@@ -93,8 +95,13 @@
             var letter;
             do {
                 letter = randomLetterGenerator(isLower);
-            } while (letter === currentLetter);
-            
+            } while (letter === currentLetter && pastLetters.indexOf(letter) !== -1);
+
+            if(pastLetters.length > NUMBER_OF_PAST) {
+                pastLetters.pop();
+            }
+
+            pastLetters.push(letter);
             letterElement.innerHTML = letter;
         }
     </script>
